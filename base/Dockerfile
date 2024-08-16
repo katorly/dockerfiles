@@ -40,7 +40,7 @@ RUN apt-get update -y && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
-# Set terminal encoding to UTF-8
+# Set terminal locale to UTF-8
 ENV LANG=en_US.UTF-8
 
 # Add a non-root user `dev`
