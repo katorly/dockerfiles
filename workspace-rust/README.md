@@ -1,5 +1,5 @@
 # workspace-rust
-Basic Rusy development environment.
+Basic Rust development environment.
 
 ## Includes
 - Rust
