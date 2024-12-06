@@ -4,7 +4,7 @@ FROM katorly/workspace-base:latest
 ARG NODE_VERSION=20.16.0
 
 # Install nvm
-ENV NVM_DIR /home/dev/.nvm
+ENV NVM_DIR=/home/dev/.nvm
 RUN NVM_VERSION=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/latest | jq -r .tag_name) && \
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/$NVM_VERSION/install.sh | bash && \
     [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" && \
@@ -16,4 +16,5 @@ RUN NVM_VERSION=$(curl -s https://api.github.com/repos/nvm-sh/nvm/releases/lates
     nvm cache clear && \
     # Install yarn, pnpm, etc.
     npm install -g yarn pnpm node-gyp typescript && \
+    echo "export PATH=$PATH:$HOME/.npm-global/bin:$HOME/.yarn/bin:$HOME/.local/share/pnpm" >> ~/.bashrc && \
     npm cache clean --force
