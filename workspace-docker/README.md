@@ -10,6 +10,10 @@ Use `--privileged` flag to enable Docker inside your container. For example:
 ```shell
 docker run --privileged -it katorly/workspace-docker:latest
 ```
+or in DevContainer:
+```json
+"runArgs": ["--privileged"]
+```
 
 > [!CAUTION]  
 > Using `--privileged` flag may pose significant risks to the host machine. Use it at your own risk.

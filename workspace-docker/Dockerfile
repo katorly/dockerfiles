@@ -4,17 +4,18 @@ FROM katorly/workspace-base:latest
 USER root
 
 RUN DEBIAN_FRONTEND="noninteractive" apt-get update -y && apt-get install -y --no-install-recommends \
-    apt-transport-https \
     ca-certificates \
-    gnupg \
-    lsb-release && \
-    # Install Docker
+    curl && \
     install -m 0755 -d /etc/apt/keyrings && \
     curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc && \
     chmod a+r /etc/apt/keyrings/docker.asc && \
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null && \
+    echo "Types: deb" > /etc/apt/sources.list.d/docker.sources && \
+    echo "URIs: https://download.docker.com/linux/ubuntu" >> /etc/apt/sources.list.d/docker.sources && \
+    echo "Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")" >> /etc/apt/sources.list.d/docker.sources && \
+    echo "Components: stable" >> /etc/apt/sources.list.d/docker.sources && \
+    echo "Signed-By: /etc/apt/keyrings/docker.asc" >> /etc/apt/sources.list.d/docker.sources && \
     apt-get update -y && \
-    apt-get install -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
+    apt-get install -y --no-install-recommends docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin && \
     # Allow non-root user to use docker
     usermod -aG docker dev && \
     # Install dive (https://github.com/wagoodman/dive)
@@ -24,10 +25,14 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get update -y && apt-get install -y --n
     rm dive_${DIVE_VERSION}_linux_amd64.deb && \
     # Install Slim (https://github.com/slimtoolkit/slim)
     curl -sL https://raw.githubusercontent.com/slimtoolkit/slim/master/scripts/install-slim.sh | bash - && \
+    # Install dind-wrapper for better DinD support
+    curl -fsSL https://raw.githubusercontent.com/moby/moby/master/hack/dind -o /usr/local/bin/dind && \
+    chmod +x /usr/local/bin/dind && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
-# Set back to non-root user
-USER dev
-
 # Start Docker daemon on startup
-ENTRYPOINT ["/bin/bash", "-c", "sudo /etc/init.d/docker start && /bin/bash"]
+COPY entrypoint.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/entrypoint.sh"]
+CMD ["/bin/bash"]
