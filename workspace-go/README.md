@@ -3,4 +3,4 @@ Basic Go development environment.
 
 ## Includes
 - Golang
-- Delve & golangci-lint
+- Delve, golangci-lint, air, etc.
