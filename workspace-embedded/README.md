@@ -2,7 +2,6 @@
 Embedded development environment in Docker.
 
 ## Includes
-- ninja-build
 - openocd
 - qemu
 - gcc-arm-none-eabi

@@ -6,15 +6,17 @@ USER root
 # Install embedded development tools
 RUN DEBIAN_FRONTEND="noninteractive" apt-get update -y && apt-get install -y --no-install-recommends \
     binutils-arm-none-eabi \
+    device-tree-compiler \
+    dfu-util \
     gcc-arm-none-eabi \
     gdb-multiarch \
+    libhidapi-dev \
+    libncurses-dev \
     libnewlib-arm-none-eabi \
     libssl-dev \
     libusb-dev \
-    libncurses-dev \
-    ninja-build \
     openocd \
-    pkg-config \
+    picocom \
     qemu-system && \
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
