@@ -19,5 +19,6 @@ RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y --de
     rustup component add rust-src && \
     rustup component add rustfmt && \
     rustup component add clippy && \
-    cargo install cargo-edit && \
-    cargo install cargo-watch
+    rustup component add rust-analyzer && \
+    cargo install cargo-watch && \
+    cargo install cargo-edit
