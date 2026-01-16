@@ -2,7 +2,7 @@
 Basic Java development environment.
 
 ## Includes
-- Java 21
+- Java 25
 - Kotlin
 - Maven & Gradle
 
