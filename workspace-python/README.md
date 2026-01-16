@@ -1,8 +1,8 @@
 # workspace-python
-Basic Python development environment.
+Basic Python development environment. (Not designed for LLM training.)
 
 ## Includes
-- Python 3.12
+- Python 3.14
 - Tools for dependencies management, code analysis, package publishing, etc.
 - Jupyter
 
