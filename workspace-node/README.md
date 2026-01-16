@@ -2,7 +2,7 @@
 Basic Web development environment.
 
 ## Includes
-- Node.js 20.16.0 (Iron)
+- Node.js 24.13.0 (Krypton)
 - npm, yarn, pnpm
 - node-gyp
 - TypeScript

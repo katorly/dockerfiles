@@ -1,7 +1,7 @@
 FROM katorly/workspace-base:latest
 
-# The Node.js version to install: https://nodejs.org/en/about/previous-releases#looking-for-latest-release-of-a-version-branch
-ARG NODE_VERSION=20.16.0
+# The Node.js version to install: https://nodejs.org/en/about/previous-releases#looking-for-the-latest-release-of-a-version-branch
+ARG NODE_VERSION=24.13.0
 
 # Install nvm
 ENV NVM_DIR=/home/dev/.nvm
