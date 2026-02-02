@@ -14,8 +14,8 @@ RUN DEBIAN_FRONTEND="noninteractive" apt-get update -y && apt-get install -y --n
     apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install noVNC & websockify
-RUN git clone https://github.com/novnc/noVNC.git /opt/noVNC && \
-    git clone https://github.com/novnc/websockify /opt/noVNC/utils/websockify && \
+RUN git clone --depth 1 https://github.com/novnc/noVNC.git /opt/noVNC && \
+    git clone --depth 1 https://github.com/novnc/websockify /opt/noVNC/utils/websockify && \
     # Enable users to enter noVNC upon visiting port
     ln -s /opt/noVNC/vnc.html /opt/noVNC/index.html
 
