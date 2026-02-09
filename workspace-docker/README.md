@@ -17,3 +17,9 @@ or in DevContainer:
 
 > [!CAUTION]  
 > Using `--privileged` flag may pose significant risks to the host machine. Use it at your own risk.
+
+> [!TIP]
+> If Docker fails to start automatically inside the container, you can manually start it by running:
+> ```shell
+> sudo /workspace/entrypoint.sh
+> ```
