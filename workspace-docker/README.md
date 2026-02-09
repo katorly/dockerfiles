@@ -3,6 +3,7 @@ Docker-related development environment with optimization tools.
 
 ## Includes
 - Docker & Docker Compose
+- [Crun](https://github.com/containers/crun), as an alternative OCI runtime
 - [dive](https://github.com/wagoodman/dive)
 - [Slim](https://github.com/slimtoolkit/slim)
 
@@ -21,5 +22,5 @@ or in DevContainer:
 > [!TIP]
 > If Docker fails to start automatically inside the container, you can manually start it by running:
 > ```shell
-> sudo /workspace/entrypoint.sh
+> /workspace/entrypoint.sh
 > ```
